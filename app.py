@@ -70,7 +70,11 @@ if pagina == "📝 Cadastro":
             nome = st.text_input('Nome Completo')
             contato = st.text_input('WhatsApp/E-mail')
         with col2:
-            data_nasc = st.date_input('Data de Nascimento')
+            data_nasc = st.date_input('Data de Nascimento',
+            value=datetime(1990, 1, 1),
+            min_value=datetime(1920, 1, 1),
+            max_value=datetime.now()
+            )
             categoria = st.selectbox('Categoria', ['Varejo', 'Tecnologia', 'Saúde', 'Educação', 'Indústria'])
         
         endereco = st.text_area('Endereço Completo')
