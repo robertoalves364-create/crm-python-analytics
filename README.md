@@ -44,15 +44,12 @@ Plotly: Gráficos dinâmicos e interativos.
 GitHub: Versionamento e Deploy.
 
 🚀 Como executar o projeto localmente
-Clone o repositório:
-
-Bash
-git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
-Instale as dependências:
-
-Bash
-pip install -r requirements.txt
-Execute o servidor do Streamlit:
-
-Bash
-streamlit run app.py
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/robertoalves364-create/crm-python-analytics.git](https://github.com/robertoalves364-create/crm-python-analytics.git)
+2. **Instale as dependências:**
+   ```bash
+    pip install -r requirements.txt
+4. **Execute o servidor do Streamlit:**
+   ```bash
+    streamlit run app.py
