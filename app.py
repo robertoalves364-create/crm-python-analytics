@@ -191,5 +191,5 @@ elif pagina == "📲 Automações":
                         
                         link_wp = f"https://wa.me/55{fone}?text={msg_encoded}"
                         
-                        st.link_button("📲 Recuperar", link_wp, use_container_width=True)
+                        st.link_button("📲 Conversar por WhatsApp", link_wp, use_container_width=True)
                     st.divider()
