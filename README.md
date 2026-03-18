@@ -32,6 +32,11 @@ Métricas de Faturamento Total e Ticket Médio.
 
 Gráficos interativos (via Plotly) mostrando a saúde da carteira e o ranking dos principais clientes.
 
+📲 Automação de Retenção
+Recuperação Inteligente: Identificação automática de clientes em risco de churn (inativos há mais de 90 dias).
+
+Integração WhatsApp: Geração dinâmica de links de conversa com mensagens personalizadas, permitindo o reengajamento direto com um clique, sem necessidade de digitação manual de números ou textos.
+
 🧰 Tecnologias Utilizadas
 Python 3.13
 
@@ -40,6 +45,8 @@ Streamlit: Framework para criação de web apps.
 Pandas: Manipulação e análise de dados.
 
 Plotly: Gráficos dinâmicos e interativos.
+
+Urllib: Tratamento de protocolos de comunicação e URLs.
 
 GitHub: Versionamento e Deploy.
 
