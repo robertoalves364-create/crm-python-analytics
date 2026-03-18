@@ -3,6 +3,7 @@ import pandas as pd
 import os
 from datetime import datetime
 import plotly.express as px
+import urllib.parse
 
 # --- CONFIGURAÇÕES INICIAIS ---
 st.set_page_config(page_title="Sistema CRM Pro", layout="wide")
@@ -55,8 +56,8 @@ if 'df_crm' not in st.session_state:
 
 # --- 3. BARRA LATERAL ---
 with st.sidebar:
-    st.title("🚀 CRM Analytics")
-    pagina = st.radio("Navegação", ["📝 Cadastro", "⚡ Ações", "📊 Dashboards"])
+    st.title("🚀 CRM Analítico")
+    pagina = st.radio("Navegação", ["📝 Cadastro", "⚡ Ações", "📊 Dashboards","📲 Automações"])
     st.divider()
     st.info(f"💾 Registros locais: {len(st.session_state['df_crm'])}")
 
@@ -107,7 +108,6 @@ elif pagina == "⚡ Ações":
         with col_a2:
             busca = st.text_input("Buscar Nome")
 
-        # AJUSTE: Filtros cumulativos (E não ou)
         df_filtrado = df[
             (df['Classificacao'].isin(filtro_status)) & 
             (df['Categoria'].isin(filtro_categoria))
@@ -158,3 +158,38 @@ elif pagina == "📊 Dashboards":
                              text_auto='.2s', color='Total_Gasto', color_continuous_scale='Blues')
             fig_top.update_layout(yaxis={'categoryorder':'total ascending'}, height=400)
             st.plotly_chart(fig_top, use_container_width=True)
+elif pagina == "📲 Automações":
+    st.title("Retenção de Clientes")
+    df_auto = processar_segmentacao(st.session_state['df_crm'], df_vendas)
+    
+    if df_auto.empty:
+        st.warning("Cadastre clientes para ativar as automações.")
+    else:
+        st.subheader("⚠️ Clientes para Recuperação (Inativos > 90 dias)")
+        
+        # Filtramos apenas quem está inativo
+        inativos = df_auto[df_auto['Classificacao'].str.contains("Inativo")].copy()
+        
+        if inativos.empty:
+            st.success("Parabéns! Não há clientes inativos no momento.")
+        else:
+            for index, row in inativos.iterrows():
+                with st.container():
+                    col_info, col_btn = st.columns([3, 1])
+                    
+                    with col_info:
+                        st.write(f"**{row['Nome']}** - Última compra há {int(row['Dias_Inativo'])} dias")
+                        st.caption(f"Contato: {row['Contato']}")
+                    
+                    with col_btn:
+                        # Lógica da mensagem personalizada
+                        msg = f"Olá {row['Nome']}, tudo bem? Notamos que faz tempo que não nos visita. Temos uma oferta especial para o seu próximo pedido! Vamos conversar?"
+                        msg_encoded = urllib.parse.quote(msg)
+                        
+                        # Limpa o número (remove parênteses e traços se houver)
+                        fone = ''.join(filter(str.isdigit, str(row['Contato'])))
+                        
+                        link_wp = f"https://wa.me/55{fone}?text={msg_encoded}"
+                        
+                        st.link_button("📲 Recuperar", link_wp, use_container_width=True)
+                    st.divider()
