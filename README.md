@@ -2,7 +2,7 @@
 🚀 CRM Python Analytics
 Este é um projeto de CRM (Customer Relationship Management) desenvolvido em Python, utilizando a biblioteca Streamlit para a interface web e Pandas para a inteligência de dados. O sistema permite o cadastro de clientes, segmentação automática baseada em comportamento de compra (RF) e visualização de indicadores de performance em tempo real.
 
-🔗 (https://crm-python-analytics.streamlit.app/)
+🔗 https://crm-python-analytics.streamlit.app/
 
 🛠️ Funcionalidades
 📝 Cadastro de Clientes
